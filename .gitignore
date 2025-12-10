@@ -1,0 +1,15 @@
+# Genel
+.DS_Store
+
+# Backend (Python/Django)
+backend/venv/
+backend/__pycache__/
+backend/*.sqlite3
+backend/.env
+*.pyc
+
+# Frontend (Node/Next)
+frontend/node_modules/
+frontend/.next/
+frontend/.env
+frontend/.env.local
