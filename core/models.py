@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User 
 import uuid
 
 class UnitType(models.TextChoices):
@@ -18,6 +19,7 @@ class RequestStatus(models.TextChoices):
     COMPLETED = 'COMPLETED', 'Teslim Alındı'
 
 class School(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE,null=True,blank=True)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255)
     city = models.CharField(max_length=100)
