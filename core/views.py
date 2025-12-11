@@ -23,6 +23,13 @@ class InventoryViewSet(viewsets.ModelViewSet):
     queryset = InventoryItem.objects.all()
     serializer_class = InventoryItemSerializer
 
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        user = self.request.user
+        school = School.objects.get(user=user)
+        serializer.save(school=school)
+
 class RequestViewSet(viewsets.ModelViewSet):
     queryset = Request.objects.all()
     serializer_class = RequestSerializer

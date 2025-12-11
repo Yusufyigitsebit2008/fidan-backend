@@ -36,10 +36,12 @@ class InventoryItem(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     school = models.ForeignKey(School, on_delete=models.CASCADE, related_name='inventory')
     name = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)
     quantity = models.FloatField()
     unit = models.CharField(max_length=10, choices=UnitType.choices, default=UnitType.ADET)
     category = models.CharField(max_length=10, choices=Category.choices, default=Category.FIDAN)
     created_at = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to='inventory_images/', blank=True, null=True) 
 
     def __str__(self):
         return f"{self.name} - {self.school.name}"
