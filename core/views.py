@@ -22,8 +22,9 @@ class SchoolViewSet(viewsets.ModelViewSet):
 class InventoryViewSet(viewsets.ModelViewSet):
     queryset = InventoryItem.objects.all()
     serializer_class = InventoryItemSerializer
-
     permission_classes = [IsAuthenticated]
+    filterset_fields = ['category', 'unit', 'school__city']
+    search_fields = ['name', 'description', 'school__name']
 
     def perform_create(self, serializer):
         user = self.request.user
